@@ -1,38 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, TextInput, ScrollView, Image, TouchableHighlight, Modal } from "react-native";
-import { useDispatch } from "react-redux";
-import { getSingleMovie, setSingleMovie } from "../stores/creators/movieCreator";
+import { useDispatch, useSelector } from "react-redux";
 
-const CardMovie = ({ movies }) => {
+import { getSingleMovie, setSingleMovie } from "../stores/creators/movieCreator";
+import CardMovie from "../components/CardMovie";
+import DetailsMovie from "../components/DetailsMovie";
+
+export default function MovieList({ setOpen, movies }) {
     const dispatch = useDispatch();
-    const openPopup = (movieId) => {
-        dispatch(getSingleMovie(movieId));
-    };
-    
+    const { selected } = useSelector((state) => state.movieReducer);
+
     return (
-        <ScrollView style={styles.movies}>
-            {movies.map((item) => {
-                return (
-                    <TouchableHighlight onPress={() => openPopup(item.id)} key={item.id}>
-                        <View style={styles.movie}>
-                            <Image
-                                source={{ uri: item.imgUrl }}
-                                style={{
-                                    width: 200,
-                                    height: 300,
-                                    marginHorizontal: "auto",
-                                    justifyContent: "center",
-                                }}
-                                resizeMode="cover"
-                            />
-                            <Text style={styles.movieTitle}>{item.title}</Text>
-                        </View>
-                    </TouchableHighlight>
-                );
-            })}
-        </ScrollView>
+        <View style={styles.container}>
+            <View style={styles.headerContainer}>
+                <Text style={styles.headerSubTitle} onPress={() => setOpen(false)}>
+                    {" "}
+                    Back{" "}
+                </Text>
+                <Text style={styles.headerTitle}>Now Playing</Text>
+            </View>
+            <CardMovie movies={movies} />
+
+            <Modal animationType="fade" transparent={false} visible={typeof selected.title != "undefined" ? true : false}>
+                <DetailsMovie selected={selected} />
+            </Modal>
+        </View>
     );
-};
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -117,5 +111,3 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
 });
-
-export default CardMovie;

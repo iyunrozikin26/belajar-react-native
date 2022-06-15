@@ -3,33 +3,32 @@ import { StyleSheet, Text, View, TextInput, ScrollView, Image, TouchableHighligh
 import { useDispatch } from "react-redux";
 import { getSingleMovie, setSingleMovie } from "../stores/creators/movieCreator";
 
-const CardMovie = ({ movies }) => {
+const DetailsMovie = ({ selected }) => {
     const dispatch = useDispatch();
-    const openPopup = (movieId) => {
-        dispatch(getSingleMovie(movieId));
+    const closePopup = () => {
+        dispatch(setSingleMovie({}));
     };
-    
+
     return (
         <ScrollView style={styles.movies}>
-            {movies.map((item) => {
-                return (
-                    <TouchableHighlight onPress={() => openPopup(item.id)} key={item.id}>
-                        <View style={styles.movie}>
-                            <Image
-                                source={{ uri: item.imgUrl }}
-                                style={{
-                                    width: 200,
-                                    height: 300,
-                                    marginHorizontal: "auto",
-                                    justifyContent: "center",
-                                }}
-                                resizeMode="cover"
-                            />
-                            <Text style={styles.movieTitle}>{item.title}</Text>
-                        </View>
-                    </TouchableHighlight>
-                );
-            })}
+            <View style={styles.popUp}>
+                <Image
+                    source={{ uri: selected.imgUrl }}
+                    style={{
+                        width: 100,
+                        height: 140,
+                        marginHorizontal: "auto",
+                        justifyContent: "center",
+                    }}
+                    resizeMode="cover"
+                />
+                <Text style={styles.popTitle}>{selected.title}</Text>
+                <Text style={{ marginBottom: 15 }}>Rating: {selected.rating}</Text>
+                <Text style={{ marginBottom: 15, justifyContent: "space-evenly" }}>{selected.synopsis}</Text>
+                <TouchableHighlight style={styles.closeBtn} onPress={closePopup}>
+                    <Text>Back</Text>
+                </TouchableHighlight>
+            </View>
         </ScrollView>
     );
 };
@@ -118,4 +117,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default CardMovie;
+export default DetailsMovie;

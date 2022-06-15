@@ -1,32 +1,28 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, TextInput, ScrollView, Button } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import { useDispatch } from "react-redux";
+import { Register } from "../stores/creators/userCreator";
 
-export default function RegisterPage({ navigation }) {
-    const usersUrl = "https://movie-deploy-server.herokuapp.com/users";
-
+export default function RegisterPage({ setOpen }) {
+    const dispatch = useDispatch();
     const [user, setUserRegister] = useState({
         firstName: "",
         lastName: "",
         email: "",
         password: "",
     });
-    console.log(user);
-
     const submitRegister = () => {
-        axios({
-            method: "post",
-            url: usersUrl + "/register-cust",
-            data: user,
-        })
+        dispatch(Register(user))
             .then(({ data }) => {
                 console.log(data);
+                navigation.navigate("Login");
             })
             .catch((err) => console.log(err));
     };
 
+    const openLogin = () => {
+        setOpen(false);
+    };
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Login</Text>
@@ -82,11 +78,11 @@ export default function RegisterPage({ navigation }) {
                 keyboardType="password"
                 value={user.password}
             />
-            <Button title="LOGIN" color="#841584" onPress={submitRegister} />
+            <Button title="Create account" color="#841584" onPress={submitRegister} />
             <View>
                 <Text style={styles.register}>
                     Yey, i've an account. Let's{" "}
-                    <Text style={{ color: "yellow" }} onPress={() => navigation.navigate("Login")}>
+                    <Text style={{ color: "yellow" }} onPress={openLogin}>
                         Login
                     </Text>
                 </Text>

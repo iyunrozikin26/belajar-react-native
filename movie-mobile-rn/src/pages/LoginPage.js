@@ -1,27 +1,35 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { StyleSheet, Text, View, TextInput, Button, Modal } from "react-native";
+import { useDispatch } from "react-redux";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, TextInput, ScrollView, Button } from "react-native";
+import { Login } from "../stores/creators/userCreator";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import RegisterPage from "./RegisterPage";
 
 export default function LoginPage({ navigation }) {
-    const usersUrl = "https://movie-deploy-server.herokuapp.com/users";
-
+    const dispatch = useDispatch();
     const [user, setUserLogin] = useState({
         email: "",
         password: "",
     });
 
-    const submitLogin = () => {
-        console.log("ini button login");
-        axios({
-            method: "post",
-            url: usersUrl + "/login",
-            data: user,
-        })
-            .then(({ data }) => {
-                console.log(data);
-            })
-            .catch((err) => console.log(err));
+    const [open, setOpen] = useState(false);
+
+    const openRegister = () => {
+        setOpen(true);
+    };
+
+    const submitLogin = async () => {
+        try {
+            const userLogin = await dispatch(Login(user));
+            console.log(userLogin.data);
+            const { access_token } = userLogin.data;
+            await AsyncStorage.setItem("access_token", access_token);
+            const storage = await AsyncStorage.getItem("access_token");
+            if (storage) navigation.navigate("Home");
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -58,11 +66,14 @@ export default function LoginPage({ navigation }) {
             <View>
                 <Text style={styles.register}>
                     don't have an account?{" "}
-                    <Text style={{ color: "yellow" }} onPress={() => navigation.navigate("Register")}>
+                    <Text style={{ color: "yellow" }} onPress={openRegister}>
                         Register
                     </Text>
                 </Text>
             </View>
+            <Modal animationType="fade" transparent={false} visible={open ? true : false}>
+                <RegisterPage setOpen={setOpen} />
+            </Modal>
         </View>
     );
 }
