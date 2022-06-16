@@ -5,6 +5,7 @@ import { StatusBar } from "expo-status-bar";
 import { Login } from "../stores/creators/userCreator";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import RegisterPage from "./RegisterPage";
+import axios from "axios";
 
 export default function LoginPage({ navigation }) {
     const dispatch = useDispatch();
@@ -14,6 +15,17 @@ export default function LoginPage({ navigation }) {
     });
 
     const [open, setOpen] = useState(false);
+
+    useEffect(() => {
+        axios({
+            method: "get",
+            url: "http://localhost:8080/users",
+        })
+            .then(({ data }) => {
+                console.log(data);
+            })
+            .catch((error) => console.log(error));
+    }, []);
 
     const openRegister = () => {
         setOpen(true);

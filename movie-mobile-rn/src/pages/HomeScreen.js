@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, ScrollView, TouchableHighlight, Modal } from "r
 import { useDispatch, useSelector } from "react-redux";
 import { getGenres, getAllMovies } from "../stores/creators/movieCreator";
 import MovieList from "./MovieList";
+import axios from "axios";
 
 export default function HomeScreen({ navigation }) {
     const dispatch = useDispatch();
@@ -14,6 +15,7 @@ export default function HomeScreen({ navigation }) {
     useEffect(() => {
         dispatch(getGenres());
     }, []);
+    
 
     const openMovie = (genre) => {
         setOpen(true);

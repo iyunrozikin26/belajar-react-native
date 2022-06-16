@@ -1,0 +1,197 @@
+[
+    {
+        "id": 50,
+        "title": "Story Of Urban Life",
+        "slug": "ini slug",
+        "synopsis": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+        "trailerUrl": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/urban-movie-invitation-newsletter-graphic-design-template-fe36b823a15032f3e3d4672490b2a5e5.jpg?ts=1637002239",
+        "imgUrl": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/urban-movie-invitation-newsletter-graphic-design-template-fe36b823a15032f3e3d4672490b2a5e5.jpg?ts=1637002239",
+        "rating": "6",
+        "price": "0",
+        "GenreId": 3,
+        "AuthorId": 1,
+        "createdAt": "2022-06-08T23:18:41.997Z",
+        "updatedAt": "2022-06-08T23:18:41.997Z"
+    },
+    {
+        "id": 49,
+        "title": "Story Of Urban Life",
+        "slug": "ini slug",
+        "synopsis": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+        "trailerUrl": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/urban-movie-invitation-newsletter-graphic-design-template-fe36b823a15032f3e3d4672490b2a5e5.jpg?ts=1637002239",
+        "imgUrl": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/urban-movie-invitation-newsletter-graphic-design-template-fe36b823a15032f3e3d4672490b2a5e5.jpg?ts=1637002239",
+        "rating": "6",
+        "price": "0",
+        "GenreId": 3,
+        "AuthorId": 1,
+        "createdAt": "2022-06-08T23:18:04.431Z",
+        "updatedAt": "2022-06-08T23:18:04.431Z"
+    },
+    {
+        "id": 48,
+        "title": "Story Of Urban Life",
+        "slug": "ini slug",
+        "synopsis": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+        "trailerUrl": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/urban-movie-invitation-newsletter-graphic-design-template-fe36b823a15032f3e3d4672490b2a5e5.jpg?ts=1637002239",
+        "imgUrl": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/urban-movie-invitation-newsletter-graphic-design-template-fe36b823a15032f3e3d4672490b2a5e5.jpg?ts=1637002239",
+        "rating": "6",
+        "price": "0",
+        "GenreId": 3,
+        "AuthorId": 1,
+        "createdAt": "2022-06-08T23:18:04.359Z",
+        "updatedAt": "2022-06-08T23:18:04.359Z"
+    },
+    {
+        "id": 47,
+        "title": "Movie Night",
+        "slug": "ini slug",
+        "synopsis": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+        "trailerUrl": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/movie-night-design-template-2b3302a1b4e56944a5462773f2c9effa.jpg?ts=1637048600",
+        "imgUrl": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/movie-night-design-template-2b3302a1b4e56944a5462773f2c9effa.jpg?ts=1637048600",
+        "rating": "6",
+        "price": "0",
+        "GenreId": 3,
+        "AuthorId": 1,
+        "createdAt": "2022-06-08T23:16:21.495Z",
+        "updatedAt": "2022-06-08T23:16:21.495Z"
+    },
+    {
+        "id": 46,
+        "title": "Wonder Women ",
+        "slug": "ini slug",
+        "synopsis": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+        "trailerUrl": "https://upload.wikimedia.org/wikipedia/id/e/ed/Wonder_Woman_%282017_film%29.jpg",
+        "imgUrl": "https://upload.wikimedia.org/wikipedia/id/e/ed/Wonder_Woman_%282017_film%29.jpg",
+        "rating": "6",
+        "price": "30000",
+        "GenreId": 1,
+        "AuthorId": 1,
+        "createdAt": "2022-06-08T23:15:22.597Z",
+        "updatedAt": "2022-06-08T23:25:15.957Z",
+        "User": {
+            "firstName": "nasrun",
+            "lastName": "rozikin",
+            "role": "admin"
+        },
+        "Genre": {
+            "name": "action"
+        },
+        "Casts": []
+    },
+    {
+        "id": 45,
+        "title": "Avenger Endgame",
+        "slug": "ini slug",
+        "synopsis": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+        "trailerUrl": "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_.jpg",
+        "imgUrl": "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_.jpg",
+        "rating": "8.2",
+        "price": "25000",
+        "GenreId": 3,
+        "AuthorId": 1,
+        "createdAt": "2022-06-08T23:13:39.008Z",
+        "updatedAt": "2022-06-08T23:22:47.275Z"
+    },
+    {
+        "id": 44,
+        "title": "VIRUS OUTBREAK",
+        "slug": "ini slug",
+        "synopsis": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+        "trailerUrl": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/apocalyptic-movie-poster-design-template-237d485187078bda03b678ae069c9682.jpg?ts=1636996813",
+        "imgUrl": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/apocalyptic-movie-poster-design-template-237d485187078bda03b678ae069c9682.jpg?ts=1636996813",
+        "rating": "6",
+        "price": "0",
+        "GenreId": 3,
+        "AuthorId": 1,
+        "createdAt": "2022-06-08T23:12:25.131Z",
+        "updatedAt": "2022-06-08T23:12:25.131Z"
+    },
+    {
+        "id": 43,
+        "title": "A Women in Love",
+        "slug": "ini slug",
+        "synopsis": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+        "trailerUrl": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/romance-movie-poster-design-template-a03a68814253fa73d721ea2015e16215.jpg?ts=1636995190",
+        "imgUrl": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/romance-movie-poster-design-template-a03a68814253fa73d721ea2015e16215.jpg?ts=1636995190",
+        "rating": "6",
+        "price": "0",
+        "GenreId": 3,
+        "AuthorId": 1,
+        "createdAt": "2022-06-08T23:11:36.189Z",
+        "updatedAt": "2022-06-08T23:11:36.189Z"
+    },
+    {
+        "id": 42,
+        "title": "the Astronout",
+        "slug": "ini slug",
+        "synopsis": "LOREM ipsum",
+        "trailerUrl": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/space-movie-poster-design-template-18133e937d93002c68b4649ea234d75f.jpg?ts=1636996611",
+        "imgUrl": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/space-movie-poster-design-template-18133e937d93002c68b4649ea234d75f.jpg?ts=1636996611",
+        "rating": "6",
+        "price": "0",
+        "GenreId": 3,
+        "AuthorId": 1,
+        "createdAt": "2022-06-08T23:10:15.429Z",
+        "updatedAt": "2022-06-08T23:10:15.429Z"
+    },
+    {
+        "id": 41,
+        "title": "AFTER",
+        "slug": "ini slug",
+        "synopsis": "LOREM ipsum",
+        "trailerUrl": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/movie-poster-template-design-21a1c803fe4ff4b858de24f5c91ec57f.jpg?ts=1636996180",
+        "imgUrl": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/movie-poster-template-design-21a1c803fe4ff4b858de24f5c91ec57f.jpg?ts=1636996180",
+        "rating": "6",
+        "price": "15000",
+        "GenreId": 3,
+        "AuthorId": 1,
+        "createdAt": "2022-06-08T23:09:51.825Z",
+        "updatedAt": "2022-06-08T23:09:51.825Z"
+    },
+    {
+        "id": 40,
+        "title": "The Batman",
+        "slug": "ini slug",
+        "synopsis": "Lorem Ipsum",
+        "trailerUrl": "https://awsimages.detik.net.id/community/media/visual/2022/03/01/the-batman-2.jpeg?w=700&q=90",
+        "imgUrl": "https://awsimages.detik.net.id/community/media/visual/2022/03/01/the-batman-2.jpeg?w=700&q=90",
+        "rating": "7",
+        "price": "10000",
+        "GenreId": 1,
+        "AuthorId": 1,
+        "createdAt": "2022-06-08T23:05:38.504Z",
+        "updatedAt": "2022-06-08T23:05:38.504Z",
+        "User": {
+            "firstName": "nasrun",
+            "lastName": "rozikin",
+            "role": "admin"
+        },
+        "Genre": {
+            "name": "action"
+        },
+        "Casts": []
+    },
+    {
+        "id": 34,
+        "title": "KKN Desa Penari",
+        "slug": "ini slug",
+        "synopsis": "Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ensure the future of his family and his people. As malevolent forces explode into conflict over the planet's exclusive supply of the most precious resource in existence, only those who can conquer their own fear will survive.",
+        "trailerUrl": "https://m.media-amazon.com/images/M/MV5BYjBjM2Y5YWEtNTgyMi00MzcwLThkYTctYzZmY2FkNjZjZTRjXkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_.jpg",
+        "imgUrl": "https://m.media-amazon.com/images/M/MV5BYjBjM2Y5YWEtNTgyMi00MzcwLThkYTctYzZmY2FkNjZjZTRjXkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_.jpg",
+        "rating": "8",
+        "price": "20000",
+        "GenreId": 4,
+        "AuthorId": 1,
+        "createdAt": "2022-06-08T12:39:25.996Z",
+        "updatedAt": "2022-06-08T23:04:56.587Z",
+        "User": {
+            "firstName": "nasrun",
+            "lastName": "rozikin",
+            "role": "admin"
+        },
+        "Genre": {
+            "name": "horror"
+        },
+        "Casts": []
+    }
+]

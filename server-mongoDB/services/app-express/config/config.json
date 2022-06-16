@@ -1,0 +1,30 @@
+{
+    "development": {
+        "username": "postgres",
+        "password": "postgres",
+        "database": "hack-movies",
+        "host": "localhost",
+        "dialect": "postgres",
+        "logging": false
+    },
+    "test": {
+        "username": "postgres",
+        "password": "postgres",
+        "database": "hack-movies-testing",
+        "host": "localhost",
+        "dialect": "postgres",
+        "logging": false
+    },
+    "production": {
+        "use_env_variable": "DATABASE_URL",
+        "ssl": true,
+        "dialect": "postgres",
+        "protocol": "postgres",
+        "dialectOptions": {
+            "ssl": {
+                "require": true,
+                "rejectUnauthorized": false
+            }
+        }
+    }
+}
