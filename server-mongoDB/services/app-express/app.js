@@ -1,4 +1,6 @@
-require("dotenv").config();
+if (process.env) {
+    require("dotenv").config();
+}
 
 const express = require("express");
 const app = express();
@@ -13,5 +15,5 @@ app.use(cors());
 app.use(router); // sesuaikan
 
 app.listen(port, () => {
-    console.log(`listening on : http://localhost:${port}`);
+    console.log(`app-express on http://localhost:${port}`);
 });

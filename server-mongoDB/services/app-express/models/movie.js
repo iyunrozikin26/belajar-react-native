@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
             Movie.hasMany(models.Cast, { foreignKey: "MovieId" });
             Movie.hasMany(models.Order, { foreignKey: "MovieId" });
 
-            Movie.belongsTo(models.User, { foreignKey: "AuthorId" });
             Movie.belongsTo(models.Genre, { foreignKey: "GenreId" });
         }
     }
@@ -88,15 +87,9 @@ module.exports = (sequelize, DataTypes) => {
             },
             AuthorId: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
-                validate: {
-                    notNull: { message: "cannot to be null, enter your movie authorId" },
-                    notEmpty: { message: "cannot to be empty, enter your movie authorId" },
-                },
-                references: {
-                    model: "Users",
-                    key: "id",
-                },
+            },
+            AuthorMongoId: {
+                type: DataTypes.STRING,
             },
         },
         {

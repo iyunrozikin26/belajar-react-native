@@ -1,14 +1,10 @@
-const { User, Movie, Genre, Cast, Order, sequelize } = require("../models");
+const { Movie, Genre, Cast, Order, sequelize } = require("../models");
 
 class Controller {
     static async getAllMovies(req, res) {
         try {
             let option = {
                 include: [
-                    {
-                        model: User,
-                        attributes: ["firstName", "lastName", "role"],
-                    },
                     {
                         model: Genre,
                         attributes: ["name"],
@@ -31,6 +27,7 @@ class Controller {
 
     static async createMovie(req, res) {
         const { title, slug, synopsis, trailerUrl, imgUrl, rating, price, GenreId } = req.body;
+        const { _id } = req.headers;
         try {
             const newMovie = {
                 title,
@@ -41,7 +38,7 @@ class Controller {
                 rating,
                 price,
                 GenreId,
-                AuthorId: req.user.id,
+                AuthorMongoId: _id,
             };
 
             const createNewMovie = await Movie.create(newMovie);
@@ -58,10 +55,6 @@ class Controller {
             let option = {
                 where: { id: movieId },
                 include: [
-                    {
-                        model: User,
-                        attributes: ["firstName", "lastName", "role"],
-                    },
                     {
                         model: Genre,
                         attributes: ["name"],
@@ -123,6 +116,7 @@ class Controller {
 
             const deleteMovie = await Movie.destroy({
                 where: { id: movieId },
+                returning: true,
             });
             res.status(201).json(movieByPk);
         } catch (error) {

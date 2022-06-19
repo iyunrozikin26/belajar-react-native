@@ -7,8 +7,6 @@ moviesRoute.get("/genre", Controller.getAllGenre);
 moviesRoute.post("/", authentication, Controller.createMovie);
 moviesRoute.get("/:movieId", Controller.readMovie);
 moviesRoute.patch("/:movieId/edit", authentication, Controller.updateMovie);
-moviesRoute.delete("/:movieId/delete", authentication, Controller.deleteMovie);
-
-// moviesRoute.post("/:movieId/transaction", Controller.postTransaction);
+moviesRoute.delete("/:movieId/delete", Controller.deleteMovie);
 
 module.exports = moviesRoute;

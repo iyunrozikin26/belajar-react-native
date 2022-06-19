@@ -5,13 +5,13 @@ const PORT = 8080;
 const { run } = require("./config/mongodb");
 const router = require("./routes/router");
 
-app.use(express.urlencoded({extended:true}))
-app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 run()
     .then(() => {
         app.listen(PORT, () => {
-            console.log("mongodb connected, listen on port", PORT);
+            console.log(`MongoDB connected http://localhost:${PORT}`);
         });
     })
     .catch((err) => {

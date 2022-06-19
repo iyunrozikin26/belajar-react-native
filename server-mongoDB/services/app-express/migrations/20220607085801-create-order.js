@@ -14,6 +14,9 @@ module.exports = {
       AuthorId: {
         type: Sequelize.INTEGER
       },
+      AuthorMongoId: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

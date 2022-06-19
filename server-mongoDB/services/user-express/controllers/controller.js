@@ -1,4 +1,6 @@
 const User = require("../models/user");
+const { comparePassword, hashingPassword } = require("../helpers/bcrypt");
+const { signToken } = require("../helpers/jwt");
 
 class Controller {
     static async getAllUsers(req, res, next) {
@@ -9,23 +11,53 @@ class Controller {
             console.log(error);
         }
     }
+
     static async getOneUser(req, res, next) {
         try {
             const id = req.params.id;
             const user = await User.findById(id);
-            res.status(200).json(user);
+            res.status(200).json({
+                username: user[0].username,
+                email: user[0].email,
+            });
         } catch (error) {
             console.log(error);
         }
     }
 
-    static async postUser(req, res) {
+    // buat post login
+    static async postLogin(req, res) {
+        const { email, password } = req.body;
+        try {
+            const user = await User.findByEmail(email);
+            if (!user) throw { status: 401, message: "wrong email / password" };
+            else {
+                if (comparePassword(password, user.password)) {
+                    const access_token = signToken({ email });
+                    if (!access_token) throw { status: 401, message: "wrong email / password" };
+
+                    res.status(200).json({
+                        _id: user._id,
+                        email: user.email,
+                        access_token,
+                    });
+                }
+            }
+
+            console.log(user);
+        } catch (error) {
+            console.log(error);
+            res.status(error.status).json(error.message);
+        }
+    }
+
+    static async postRegister(req, res) {
         const { username, email, password, role, phoneNumber, address } = req.body;
         try {
             const newUser = {
                 username,
                 email,
-                password,
+                password: hashingPassword(password), //hashing(password)
                 role,
                 phoneNumber,
                 address,

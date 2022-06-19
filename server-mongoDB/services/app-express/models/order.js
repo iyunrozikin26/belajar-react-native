@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             // define association here
             Order.belongsTo(models.Movie, { foreignKey: "MovieId" });
-            Order.belongsTo(models.User, { foreignKey: "AuthorId" });
         }
     }
     Order.init(
@@ -24,12 +23,10 @@ module.exports = (sequelize, DataTypes) => {
                 },
             },
             AuthorId: {
-                allowNull: false,
                 type: DataTypes.INTEGER,
-                references: {
-                    model: "Users",
-                    key: "id",
-                },
+            },
+            AuthorMongoId: {
+                type: DataTypes.STRING,
             },
         },
         {

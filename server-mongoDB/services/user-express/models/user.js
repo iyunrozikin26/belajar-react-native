@@ -14,6 +14,12 @@ class User {
             .toArray();
     }
 
+    static findByEmail(email) {
+        return getDatabase()
+            .collection(collectionName)
+            .findOne({ email })
+    }
+
     static createUser(newUser) {
         return getDatabase().collection(collectionName).insertOne(newUser);
     }
