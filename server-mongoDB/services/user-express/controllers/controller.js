@@ -19,6 +19,8 @@ class Controller {
             res.status(200).json({
                 username: user[0].username,
                 email: user[0].email,
+                address: user[0].address,
+                phoneNumber: user[0].phoneNumber,
             });
         } catch (error) {
             console.log(error);

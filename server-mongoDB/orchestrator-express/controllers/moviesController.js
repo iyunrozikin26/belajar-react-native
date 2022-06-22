@@ -1,4 +1,6 @@
 const axios = require("axios");
+const Redis = require("ioredis");
+const redis = new Redis();
 
 const MOVIES_URL = "http://localhost:3001/movies";
 const USERS_URL = "http://localhost:8080/users";
@@ -6,8 +8,14 @@ const USERS_URL = "http://localhost:8080/users";
 class Controller {
     static async getAllMovies(req, res) {
         try {
-            const { data: allMovies } = await axios.get(MOVIES_URL);
-            res.status(200).json(allMovies);
+            const cacheMovies = await redis.get("movies");
+            if (cacheMovies) {
+                res.status(200).json(JSON.parse(cacheMovies));
+            } else {
+                const { data: allMovies } = await axios.get(MOVIES_URL);
+                await redis.set("movies", JSON.stringify(allMovies.rows));
+                res.status(200).json(allMovies.rows);
+            }
         } catch (error) {
             console.log(error);
             res.status(500).json(error);
