@@ -26,7 +26,7 @@ class Controller {
     }
 
     static async createMovie(req, res) {
-        const { title, slug, synopsis, trailerUrl, imgUrl, rating, price, GenreId } = req.body;
+        const { title, slug, synopsis, trailerUrl, imgUrl, rating, price, GenreId, AuthorMongoId } = req.body;
         const { _id } = req.headers;
         try {
             const newMovie = {
@@ -38,7 +38,7 @@ class Controller {
                 rating,
                 price,
                 GenreId,
-                AuthorMongoId: _id,
+                AuthorMongoId,
             };
 
             const createNewMovie = await Movie.create(newMovie);
@@ -79,7 +79,7 @@ class Controller {
 
     static async updateMovie(req, res) {
         const { movieId } = req.params;
-        const { title, slug, synopsis, trailerUrl, imgUrl, rating, price, GenreId } = req.body;
+        const { title, slug, synopsis, trailerUrl, imgUrl, rating, price, GenreId, AuthorMongoId } = req.body;
 
         try {
             const movieByPk = await Movie.findByPk(movieId);
@@ -94,7 +94,7 @@ class Controller {
                 rating,
                 price,
                 GenreId: +GenreId,
-                AuthorId: req.user.id,
+                AuthorMongoId,
             };
 
             const updateMovie = await Movie.update(updateInput, {
@@ -114,7 +114,7 @@ class Controller {
             const movieByPk = await Movie.findByPk(movieId);
             if (!movieByPk) throw { status: 404, message: "movie is Not Found" };
 
-            const deleteMovie = await Movie.destroy({
+            const deletedMovie = await Movie.destroy({
                 where: { id: movieId },
                 returning: true,
             });

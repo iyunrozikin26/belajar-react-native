@@ -1,4 +1,5 @@
 const axios = require("axios");
+const { response } = require("express");
 const Redis = require("ioredis");
 const redis = new Redis();
 
@@ -19,6 +20,19 @@ class Controller {
         } catch (error) {
             console.log(error);
             res.status(500).json(error);
+        }
+    }
+
+    static async createMovie(req, res) {
+        try {
+            // console.log(req.body)
+            const { data: newMovie } = await axios.post(MOVIES_URL, req.body);
+            if (newMovie) {
+                await redis.del("movies");
+                res.status(201).json(newMovie);
+            }
+        } catch (error) {
+            console.log(error);
         }
     }
 

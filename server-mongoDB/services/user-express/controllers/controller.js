@@ -45,8 +45,6 @@ class Controller {
                     });
                 }
             }
-
-            console.log(user);
         } catch (error) {
             console.log(error);
             res.status(error.status).json(error.message);
@@ -54,18 +52,22 @@ class Controller {
     }
 
     static async postRegister(req, res) {
-        const { username, email, password, role, phoneNumber, address } = req.body;
+        const { username, email, password, phoneNumber, address } = req.body;
         try {
             const newUser = {
                 username,
                 email,
                 password: hashingPassword(password), //hashing(password)
-                role,
+                role: "customer",
                 phoneNumber,
                 address,
             };
             const newUserCreate = await User.createUser(newUser);
-            res.status(201).json(newUserCreate);
+            if (newUserCreate.insertedId)
+                res.status(201).json({
+                    _id: newUserCreate.insertedId,
+                    email: newUser.email,
+                });
         } catch (error) {
             console.log(error);
         }
