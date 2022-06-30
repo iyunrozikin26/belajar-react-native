@@ -1,36 +1,50 @@
 import React from "react";
-import { StyleSheet, Text, View, TextInput, ScrollView, Image, TouchableHighlight, Modal } from "react-native";
+import { StyleSheet, Text, View, ScrollView, Image, TouchableHighlight } from "react-native";
 import { useDispatch } from "react-redux";
-import { getSingleMovie, setSingleMovie } from "../stores/creators/movieCreator";
+import { getSingleMovie } from "../stores/creators/movieCreator";
 
-const CardMovie = ({ movies }) => {
-    const dispatch = useDispatch();
+const CardMovie = ({ item, genre }) => {
+    // const dispatch = useDispatch();
+    // console.log(item);
     const openPopup = (movieId) => {
-        dispatch(getSingleMovie(movieId));
+        // dispatch(getSingleMovie(movieId));
     };
-    
+
+    // console.log(genre)
+    // console.log(movies.movies.filter(mov=> {
+    //     return mov.GenreId == genre
+    // }))
+
     return (
-        <ScrollView style={styles.movies}>
-            {movies.map((item) => {
-                return (
-                    <TouchableHighlight onPress={() => openPopup(item.id)} key={item.id}>
-                        <View style={styles.movie}>
-                            <Image
-                                source={{ uri: item.imgUrl }}
-                                style={{
-                                    width: 200,
-                                    height: 300,
-                                    marginHorizontal: "auto",
-                                    justifyContent: "center",
-                                }}
-                                resizeMode="cover"
-                            />
-                            <Text style={styles.movieTitle}>{item.title}</Text>
-                        </View>
-                    </TouchableHighlight>
-                );
-            })}
-        </ScrollView>
+        // <View>
+        //     <Text>INI Card</Text>
+        // </View>
+        // <ScrollView style={styles.moviesContainer}>
+        //     {movies.movies
+        //         .filter((mov) => {
+        //             if (genre) return mov.GenreId == genre;
+        //             return mov;
+        //         })
+        //         .map((item) => {
+        //             return (
+        // <TouchableHighlight onPress={() => openPopup(item.id)} key={item.id}>
+        <View style={styles.movie}>
+            <Image
+                source={{ uri: item.imgUrl }}
+                style={{
+                    width: 200,
+                    height: 300,
+                    marginHorizontal: "auto",
+                    justifyContent: "center",
+                }}
+                resizeMode="cover"
+            />
+            <Text style={styles.movieTitle}>{item.title}</Text>
+        </View>
+        // </TouchableHighlight>
+        //             );
+        //         })}
+        // </ScrollView>
     );
 };
 
@@ -84,7 +98,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         marginBottom: 30,
     },
-    movies: {
+    moviesContainer: {
         flex: 1,
     },
     movie: {

@@ -1,8 +1,8 @@
 import axios from "axios";
 import { SET_MOVIES, SET_SEARCH, SET_SINGLE_MOVIE, GET_GENRES } from "../types/movieType";
 
-// const MOVIES_URL = "https://movie-deploy-server.herokuapp.com/movies";
 const MOVIES_URL = "http://localhost:3001/movies";
+const usersUrl = "http://localhost:8080/users";
 
 export const setMovies = (payload) => {
     return { type: SET_MOVIES, payload };
@@ -39,13 +39,11 @@ export const getAllMovies = (genre) => {
         axios({
             method: "get",
             url: "http://localhost:3001/movies",
-            // url: "https://phase3-movie-app.herokuapp.com/movies",
         })
             .then(({ data }) => {
                 let filtered = data.rows.filter((mov) => {
                     return mov.GenreId == genre;
                 });
-                // console.log(filtered);
                 dispatch(setMovies(filtered));
             })
             .catch((err) => console.log(err));
@@ -53,15 +51,33 @@ export const getAllMovies = (genre) => {
 };
 
 export const getSingleMovie = (movieId) => {
-    return (dispatch) => {
-        axios({
-            method: "get",
-            url: "http://localhost:3001/movies/" + movieId,
-        })
-            .then(({ data }) => {
-                console.log(data);
-                dispatch(setSingleMovie(data));
-            })
-            .catch((err) => console.log(err));
+    return async (dispatch) => {
+        try {
+            const { data: movies } = await axios({
+                method: "get",
+                url: `${MOVIES_URL}/${movieId}`,
+            });
+            const { data: user } = await axios({
+                method: "get",
+                url: `${usersUrl}/${movies.AuthorMongoId}`,
+            });
+            dispatch(
+                setSingleMovie({
+                    ...movies,
+                    user,
+                })
+            );
+        } catch (error) {
+            console.log(error);
+        }
+        // axios({
+        //     method: "get",
+        //     url: `${MOVIES_URL}/${movieId}`,
+        // })
+        //     .then(({ data }) => {
+        //         console.log(data);
+        //         dispatch(setSingleMovie(data));
+        //     })
+        //     .catch((err) => console.log(err));
     };
 };

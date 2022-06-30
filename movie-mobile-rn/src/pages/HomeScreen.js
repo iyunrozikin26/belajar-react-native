@@ -4,30 +4,38 @@ import { StyleSheet, Text, View, ScrollView, TouchableHighlight, Modal } from "r
 import { useDispatch, useSelector } from "react-redux";
 import { getGenres, getAllMovies } from "../stores/creators/movieCreator";
 import MovieList from "./MovieList";
-import axios from "axios";
+import { useQuery } from "@apollo/client";
+import { GET_GENRES } from "../queries/movieQuery";
 
 export default function HomeScreen({ navigation }) {
-    const dispatch = useDispatch();
-    const { movies, genres } = useSelector((state) => state.movieReducer);
+    // const dispatch = useDispatch();
+    // const { movies, genres } = useSelector((state) => state.movieReducer);
 
     const [open, setOpen] = useState(false);
+    const [genre, setGenre] = useState("");
 
-    useEffect(() => {
-        dispatch(getGenres());
-    }, []);
-    
+    // useEffect(() => {
+    //     dispatch(getGenres());
+    // }, []);
 
-    const openMovie = (genre) => {
+    const openMovie = (genreId) => {
+        setGenre(genreId);
         setOpen(true);
-        dispatch(getAllMovies(genre));
+        // dispatch(getAllMovies(genre));
     };
+
+    // GRAPHQL server
+    const { loading, error, data } = useQuery(GET_GENRES);
+
+    if (loading) return <Text style={styles.title}>Loading...</Text>;
+    if (error) return <Text style={styles.title}>{error}</Text>;
 
     return (
         <View style={styles.container}>
             <StatusBar style={false} />
             <Text style={styles.title}>Hack-Movies</Text>
             <ScrollView style={styles.movies}>
-                {genres.map((item, i) => {
+                {data.genres.map((item, i) => {
                     return (
                         <TouchableHighlight onPress={() => openMovie(item.id)} key={i}>
                             <View style={styles.movie}>
@@ -39,7 +47,7 @@ export default function HomeScreen({ navigation }) {
             </ScrollView>
             <Modal animationType="fade" transparent={false} visible={open ? true : false}>
                 <ScrollView style={styles.moviesModal}>
-                    <MovieList movies={movies} setOpen={setOpen} />
+                    <MovieList genre={genre} setOpen={setOpen} />
                 </ScrollView>
             </Modal>
         </View>

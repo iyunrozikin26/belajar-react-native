@@ -1,12 +1,15 @@
-import React from "react";
-import { StyleSheet, Text, View, TextInput, ScrollView, Image, TouchableHighlight, Modal } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, TextInput, ScrollView, Image, TouchableHighlight } from "react-native";
 import { useDispatch } from "react-redux";
 import { getSingleMovie, setSingleMovie } from "../stores/creators/movieCreator";
 
-const DetailsMovie = ({ selected }) => {
-    const dispatch = useDispatch();
+const DetailsMovie = ({ selected, selectMovie }) => {
+    // const dispatch = useDispatch();
+    const [Author, setAuthor] = useState(selected.user);
     const closePopup = () => {
-        dispatch(setSingleMovie({}));
+        selectMovie({});
+        setAuthor({});
+        // dispatch(setSingleMovie({}));
     };
 
     return (
@@ -25,6 +28,7 @@ const DetailsMovie = ({ selected }) => {
                 <Text style={styles.popTitle}>{selected.title}</Text>
                 <Text style={{ marginBottom: 15 }}>Rating: {selected.rating}</Text>
                 <Text style={{ marginBottom: 15, justifyContent: "space-evenly" }}>{selected.synopsis}</Text>
+                <Text style={{ marginBottom: 15 }}>createdBy: {Author.email}</Text>
                 <TouchableHighlight style={styles.closeBtn} onPress={closePopup}>
                     <Text>Back</Text>
                 </TouchableHighlight>

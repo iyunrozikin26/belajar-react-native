@@ -16,11 +16,14 @@ class Controller {
         try {
             const id = req.params.id;
             const user = await User.findById(id);
+            // console.log(user)
             res.status(200).json({
-                username: user[0].username,
+                _id: id,
                 email: user[0].email,
                 address: user[0].address,
                 phoneNumber: user[0].phoneNumber,
+                firstName: user[0].firstName,
+                lastName: user[0].lastName,
             });
         } catch (error) {
             console.log(error);

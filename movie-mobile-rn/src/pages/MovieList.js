@@ -1,15 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, TextInput, ScrollView, Image, TouchableHighlight, Modal } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, Modal, ScrollView, TouchableHighlight } from "react-native";
+import { useSelector } from "react-redux";
 
-import { getSingleMovie, setSingleMovie } from "../stores/creators/movieCreator";
+import { GET_ALL_MOVIES, SELECTED_MOVIE } from "../queries/movieQuery";
+import { useQuery } from "@apollo/client";
+
 import CardMovie from "../components/CardMovie";
 import DetailsMovie from "../components/DetailsMovie";
 
-export default function MovieList({ setOpen, movies }) {
-    const dispatch = useDispatch();
-    const { selected } = useSelector((state) => state.movieReducer);
+export default function MovieList({ genre, setOpen }) {
+    // const { selected } = useSelector((state) => state.movieReducer);
+    const [selected, selectMovie] = useState({});
 
+    const { loading: loadingAll, error: errorAll, data: movies } = useQuery(GET_ALL_MOVIES);
+    const openPopup = (movie) => {
+        selectMovie(movie);
+    };
+    // console.log(selected);
+
+    if (loadingAll) return <Text style={styles.title}>Loading...</Text>;
+    if (errorAll) return <Text style={styles.title}>{error}</Text>;
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
@@ -19,10 +29,23 @@ export default function MovieList({ setOpen, movies }) {
                 </Text>
                 <Text style={styles.headerTitle}>Now Playing</Text>
             </View>
-            <CardMovie movies={movies} />
+            <ScrollView style={styles.moviesContainer}>
+                {movies.movies
+                    .filter((mov) => {
+                        if (genre) return mov.GenreId == genre;
+                        return mov;
+                    })
+                    .map((item, i) => {
+                        return (
+                            <TouchableHighlight onPress={() => openPopup(item)} key={i}>
+                                <CardMovie item={item} genre={genre} />
+                            </TouchableHighlight>
+                        );
+                    })}
+            </ScrollView>
 
             <Modal animationType="fade" transparent={false} visible={typeof selected.title != "undefined" ? true : false}>
-                <DetailsMovie selected={selected} />
+                <DetailsMovie selected={selected} selectMovie={selectMovie} />
             </Modal>
         </View>
     );

@@ -3,11 +3,19 @@ const axios = require("axios");
 const MOVIES_URL = "http://localhost:3001/movies";
 const USERS_URL = "http://localhost:8080/users";
 
+const Redis = require("ioredis");
+const redis = new Redis();
+
 const typeDefs = gql`
     type User {
         _id: ID
-        username: String
+        firstName: String
+        lastName: String
         email: String
+    }
+    type Genre {
+        id: ID
+        name: String
     }
 
     type Movie {
@@ -23,6 +31,7 @@ const typeDefs = gql`
 
     type Query {
         movies: [Movie]
+        genres: [Genre]
         selectedMovie(id: ID): Movie
     }
 
@@ -49,16 +58,49 @@ const resolvers = {
     Query: {
         movies: async () => {
             try {
-                const { data: allMovies } = await axios({
-                    method: "get",
-                    url: MOVIES_URL,
-                });
-                return allMovies.rows;
+                const cacheMovies = await redis.get("movies");
+                if (cacheMovies) {
+                    return JSON.parse(cacheMovies);
+                } else {
+                    const { data: allMovies } = await axios({
+                        method: "get",
+                        url: MOVIES_URL,
+                    });
+                    const { data: users } = await axios.get(USERS_URL);
+
+                    allMovies.rows.forEach((movie) => {
+                        users.forEach((user) => {
+                            if (movie.AuthorMongoId == user._id) {
+                                movie.user = user;
+                            }
+                        });
+                    });
+
+                    await redis.set("movies", JSON.stringify(allMovies.rows));
+                    return allMovies.rows;
+                }
             } catch (error) {
                 console.log(error);
             }
         },
+        genres: async () => {
+            try {
+                const cacheGenres = await redis.get("genres");
+                if (cacheGenres) {
+                    return JSON.parse(cacheGenres);
+                } else {
+                    const { data: allGenre } = await axios({
+                        method: "get",
+                        url: `${MOVIES_URL}/genre`,
+                    });
 
+                    await redis.set("genres", JSON.stringify(allGenre));
+                    return allGenre;
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        },
         selectedMovie: async (_, args) => {
             try {
                 const { data: movie } = await axios({
@@ -69,6 +111,7 @@ const resolvers = {
                     method: "get",
                     url: `${USERS_URL}/${movie.AuthorMongoId}`,
                 });
+                console.log(movie);
                 return { ...movie, user };
             } catch (error) {
                 console.log(error);
@@ -84,7 +127,10 @@ const resolvers = {
                     url: MOVIES_URL,
                     data: args.input,
                 });
-                return newMovie;
+                if (newMovie) {
+                    await redis.del("movies");
+                    return newMovie;
+                }
             } catch (error) {
                 console.log(error);
             }
@@ -96,7 +142,10 @@ const resolvers = {
                     url: `${MOVIES_URL}/${args.id}/edit`,
                     data: args.input,
                 });
-                return movieUpdate[1][0];
+                if (movieUpdate) {
+                    await redis.del("movies");
+                    return movieUpdate[1][0];
+                }
             } catch (error) {
                 console.log(error);
             }
@@ -107,8 +156,10 @@ const resolvers = {
                     method: "delete",
                     url: `${MOVIES_URL}/${args.id}/delete`,
                 });
-                console.log(deleted);
-                return deleted;
+                if (deleted) {
+                    await redis.del("movies");
+                    return deleted;
+                }
             } catch (error) {
                 console.log(error);
             }

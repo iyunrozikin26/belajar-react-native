@@ -16,14 +16,16 @@ const typeDefs = gql`
 
     type User {
         _id: ID
-        username: String
+        firstName: String
+        lastName: String
         email: String
         address: String
         phoneNumber: String
     }
 
     input newUser {
-        username: String
+        firstName: String
+        lastName: String
         email: String
         password: String
         phoneNumber: String
@@ -37,6 +39,7 @@ const typeDefs = gql`
 
     type Query {
         users: [User]
+        user(id: String): User
     }
     type Mutation {
         userRegister(input: newUser): isRegister
@@ -50,6 +53,15 @@ const resolvers = {
             try {
                 const { data: users } = await axios.get(USERS_URL);
                 return users;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        user: async (_, args) => {
+            try {
+                const { data: userLogin } = await axios.get(`${USERS_URL}/${args.id}`);
+                console.log(userLogin);
+                return userLogin;
             } catch (error) {
                 console.log(error);
             }
@@ -76,10 +88,6 @@ const resolvers = {
                     url: `${USERS_URL}/login`,
                     data: args.input,
                 });
-                context = {
-                    access_token: isLogin.access_token,
-                };
-                console.log(context);
                 return isLogin;
             } catch (error) {
                 console.log(error);
