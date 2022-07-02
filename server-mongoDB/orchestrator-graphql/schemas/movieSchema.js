@@ -4,7 +4,14 @@ const MOVIES_URL = "http://localhost:3001/movies";
 const USERS_URL = "http://localhost:8080/users";
 
 const Redis = require("ioredis");
-const redis = new Redis();
+
+// const redis = new Redis()
+const redis = new Redis({
+    port: 14648,
+    host: "redis-14648.c1.asia-northeast1-1.gce.cloud.redislabs.com",
+    password: `${process.env.REDIS_LAB_PASS}`,
+    username: "default",
+});
 
 const typeDefs = gql`
     type User {

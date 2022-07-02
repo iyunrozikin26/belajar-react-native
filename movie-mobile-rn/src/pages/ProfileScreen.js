@@ -5,16 +5,17 @@ import { StyleSheet, View, Image, Text, Button, ScrollView, TouchableHighlight }
 import { TextInput } from "react-native-paper";
 import { GET_USER } from "../queries/userQuery";
 
-const ProfileScreen = ({ getAccessToken }) => {
+const ProfileScreen = ({ setAccessToken, userId }) => {
     const closePopup = () => {
-        getAccessToken(AsyncStorage.clear());
+        setAccessToken(false);
     };
+
     const {
         loading,
         error,
         data: user,
     } = useQuery(GET_USER, {
-        variables: { userId: "62b40413430aed2bca0ac406" },
+        variables: { userId: `${userId}` },
     });
 
     if (loading) return <Text style={styles.title}>Loading...</Text>;

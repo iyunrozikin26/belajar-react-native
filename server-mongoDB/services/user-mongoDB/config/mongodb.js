@@ -1,6 +1,6 @@
 const { MongoClient } = require("mongodb");
 
-const uri = "mongodb://localhost:27017";
+const uri = "mongodb://localhost:27017"; // ganti dengan uri mongo atlas jika ingin di deploy
 const client = new MongoClient(uri);
 
 let allData;

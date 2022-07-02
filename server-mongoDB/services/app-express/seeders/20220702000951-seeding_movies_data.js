@@ -2,12 +2,14 @@
 
 module.exports = {
     async up(queryInterface, Sequelize) {
-        let genres = require("../db/genre.json").map((genre) => {
-            genre.createdAt = new Date();
-            genre.updatedAt = new Date();
-            return genre;
+        let movies = require("../db/movies.json").map((mov) => {
+            mov.createdAt = new Date();
+            mov.updatedAt = new Date();
+            mov.AuthorMongoId = "62b40413430aed2bca0ac406";
+            return mov;
         });
-        await queryInterface.bulkInsert("Genres", genres);
+
+        await queryInterface.bulkInsert("Movies", movies);
         /**
          * Add seed commands here.
          *
@@ -20,7 +22,8 @@ module.exports = {
     },
 
     async down(queryInterface, Sequelize) {
-        await queryInterface.bulkDelete("Genres", null);
+        await queryInterface.bulkDelete("Movies", null);
+
         /**
          * Add commands to revert seed here.
          *

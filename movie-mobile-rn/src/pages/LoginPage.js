@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { StatusBar } from "expo-status-bar";
 import { Login } from "../stores/creators/userCreator";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+// import { AsyncStorage } from 'react-native';
 import RegisterPage from "./RegisterPage";
 import axios from "axios";
 import { useMutation, useQuery } from "@apollo/client";
@@ -28,10 +29,12 @@ export default function LoginPage({ navigation }) {
     //         .catch((error) => console.log(error));
     // }, []);
 
-    const [access_token, getAccessToken] = useState("");
+    const [access_token, setAccessToken] = useState(false);
     // const access_token = AsyncStorage.access_token;
     // console.log(access_token);
     const [open, setOpen] = useState("");
+    const [userId, setUserId] = useState("");
+
     const openRegister = () => {
         setOpen(true);
     };
@@ -50,23 +53,26 @@ export default function LoginPage({ navigation }) {
     // };
 
     const [isLogin] = useMutation(LOGIN_USER);
+
     const submitLogin = async () => {
         try {
             const { data: userLogin } = await isLogin({
                 variables: { input: user },
             });
+
             await AsyncStorage.setItem("access_token", userLogin.userLogin.access_token);
+            setUserId(userLogin.userLogin._id);
             const storage = await AsyncStorage.getItem("access_token");
             if (storage) {
-                getAccessToken(storage);
-                //     // navigation.navigate("Home");
+                setAccessToken(true);
+                // navigation.navigate("Home");
             }
         } catch (error) {
             console.log(error);
         }
     };
 
-    if (access_token == "") {
+    if (!access_token) {
         return (
             <View style={styles.container}>
                 <StatusBar style="auto" />
@@ -115,7 +121,7 @@ export default function LoginPage({ navigation }) {
             </View>
         );
     } else {
-        return <ProfileScreen getAccessToken={getAccessToken} />;
+        return <ProfileScreen setAccessToken={setAccessToken} userId={userId} />;
     }
 }
 
