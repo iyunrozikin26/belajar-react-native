@@ -3,19 +3,23 @@ import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 import { useDispatch } from "react-redux";
 import { Register } from "../stores/creators/userCreator";
 
-export default function RegisterPage({ setOpen }) {
+export default function RegisterPage({ setOpen, navigation }) {
     const dispatch = useDispatch();
     const [user, setUserRegister] = useState({
         firstName: "",
         lastName: "",
         email: "",
         password: "",
+        phoneNumber: "",
+        address: "",
     });
+
     const submitRegister = () => {
         dispatch(Register(user))
-            .then(({ data }) => {
+            .then((data) => {
                 console.log(data);
-                navigation.navigate("Login");
+                setOpen(false);
+                // navigation.navigate("Profile");
             })
             .catch((err) => console.log(err));
     };
@@ -25,7 +29,7 @@ export default function RegisterPage({ setOpen }) {
     };
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Login</Text>
+            <Text style={styles.title}>Register</Text>
             <TextInput
                 style={styles.inputBox}
                 onChangeText={(text) => {
@@ -61,6 +65,7 @@ export default function RegisterPage({ setOpen }) {
                     });
                 }}
                 name="email"
+                type="email"
                 placeholder="email@gmail.com"
                 keyboardType="text"
                 value={user.email}
@@ -73,10 +78,38 @@ export default function RegisterPage({ setOpen }) {
                         password: text,
                     });
                 }}
+                type="password"
+                secureTextEntry={true}
                 name="password"
                 placeholder="******"
                 keyboardType="password"
                 value={user.password}
+            />
+            <TextInput
+                style={styles.inputBox}
+                onChangeText={(text) => {
+                    setUserRegister({
+                        ...user,
+                        phoneNumber: text,
+                    });
+                }}
+                name="phoneNumber"
+                placeholder="081 928 xxx xxx"
+                keyboardType="text"
+                value={user.phoneNumber}
+            />
+            <TextInput
+                style={styles.inputBox}
+                onChangeText={(text) => {
+                    setUserRegister({
+                        ...user,
+                        address: text,
+                    });
+                }}
+                name="address"
+                placeholder="Indonesia"
+                keyboardType="text"
+                value={user.address}
             />
             <Button title="Create account" color="#841584" onPress={submitRegister} />
             <View>

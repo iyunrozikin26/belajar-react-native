@@ -1,7 +1,7 @@
 import axios from "axios";
 import { SET_USERS } from "../types/userType";
 
-const usersUrl = "http://localhost:3001/users";
+const usersUrl = "http://localhost:8080/users";
 
 export const setUsers = (payload) => {
     return { type: SET_USERS, payload };
@@ -12,7 +12,7 @@ export const Register = (user) => {
         return new Promise((resolve, reject) => {
             axios({
                 method: "post",
-                url: usersUrl + "/register-cust",
+                url: usersUrl + "/register",
                 data: user,
             })
                 .then(({ data }) => {

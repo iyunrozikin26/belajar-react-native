@@ -17,12 +17,14 @@ const Tab = createBottomTabNavigator();
 export default function App() {
     return (
         <ApolloProvider client={client}>
-            <NavigationContainer>
-                <Tab.Navigator initialRouteName="Profile" activeColor="#f0edf6" inactiveColor="#3e2465" barStyle={{ paddingBottom: 48 }}>
-                    <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-                    <Tab.Screen name="Profile" component={LoginPage} options={{ headerShown: false }} />
-                </Tab.Navigator>
-            </NavigationContainer>
+            <Provider store={store}>
+                <NavigationContainer>
+                    <Tab.Navigator initialRouteName="Profile" activeColor="#f0edf6" inactiveColor="#3e2465" barStyle={{ paddingBottom: 48 }}>
+                        <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+                        <Tab.Screen name="Profile" component={LoginPage} options={{ headerShown: false }} />
+                    </Tab.Navigator>
+                </NavigationContainer>
+            </Provider>
         </ApolloProvider>
     );
 }

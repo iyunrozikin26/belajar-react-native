@@ -14,8 +14,8 @@ import ProfileScreen from "./ProfileScreen";
 export default function LoginPage({ navigation }) {
     // const dispatch = useDispatch();
     const [user, setUserLogin] = useState({
-        email: "jon@gmail.com",
-        password: "112233",
+        email: "",
+        password: "",
     });
 
     // useEffect(() => {
@@ -87,7 +87,7 @@ export default function LoginPage({ navigation }) {
                         });
                     }}
                     name="email"
-                    placeholder="email@gmail.com"
+                    placeholder="jhondoe@gmail.com"
                     keyboardType="text"
                     value={user.email}
                 />
@@ -99,8 +99,9 @@ export default function LoginPage({ navigation }) {
                             password: text,
                         });
                     }}
+                    secureTextEntry={true}
                     name="password"
-                    placeholder="******"
+                    placeholder="************"
                     type="password"
                     keyboardType="password"
                     value={user.password}
@@ -115,9 +116,9 @@ export default function LoginPage({ navigation }) {
                     </Text>
                 </View>
 
-                {/* <Modal animationType="fade" transparent={false} visible={open ? true : false}>
-                <RegisterPage setOpen={setOpen} />
-            </Modal> */}
+                <Modal animationType="fade" transparent={false} visible={open ? true : false}>
+                    <RegisterPage setOpen={setOpen} navigation={navigation} />
+                </Modal>
             </View>
         );
     } else {

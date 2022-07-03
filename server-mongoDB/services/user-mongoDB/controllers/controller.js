@@ -55,10 +55,11 @@ class Controller {
     }
 
     static async postRegister(req, res) {
-        const { username, email, password, phoneNumber, address } = req.body;
+        const { firstName, lastName, email, password, phoneNumber, address } = req.body;
         try {
             const newUser = {
-                username,
+                firstName,
+                lastName,
                 email,
                 password: hashingPassword(password), //hashing(password)
                 role: "customer",

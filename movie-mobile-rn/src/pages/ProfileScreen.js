@@ -27,7 +27,7 @@ const ProfileScreen = ({ setAccessToken, userId }) => {
                 <Text style={styles.title}>Profile</Text>
                 <View style={styles.popUp}>
                     <Image
-                        source={{ uri: "https://play-lh.googleusercontent.com/I-Yd5tJnxw7Ks8FUhUiFr8I4kohd9phv5sRFHG_-nSX9AAD6Rcy570NBZVFJBKpepmc=w240-h480-rw" }}
+                        source={{ uri: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Alberto_conversi_profile_pic.jpg" }}
                         style={{
                             width: 100,
                             height: 100,
