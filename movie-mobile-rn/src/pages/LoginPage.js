@@ -66,6 +66,10 @@ export default function LoginPage({ navigation }) {
             if (storage) {
                 setAccessToken(true);
                 // navigation.navigate("Home");
+                setUserLogin({
+                    email: "",
+                    password: "",
+                });
             }
         } catch (error) {
             console.log(error);

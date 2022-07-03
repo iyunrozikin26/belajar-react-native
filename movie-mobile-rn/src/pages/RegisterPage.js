@@ -20,6 +20,14 @@ export default function RegisterPage({ setOpen, navigation }) {
                 console.log(data);
                 setOpen(false);
                 // navigation.navigate("Profile");
+                setUserRegister({
+                    firstName: "",
+                    lastName: "",
+                    email: "",
+                    password: "",
+                    phoneNumber: "",
+                    address: "",
+                });
             })
             .catch((err) => console.log(err));
     };

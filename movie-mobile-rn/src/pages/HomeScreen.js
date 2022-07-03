@@ -29,7 +29,6 @@ export default function HomeScreen({ navigation }) {
 
     if (loading) return <Text style={styles.title}>Loading...</Text>;
     if (error) return <Text style={styles.title}>{error}</Text>;
-    console.log(data);
 
     return (
         <View style={styles.container}>
