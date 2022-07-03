@@ -1,8 +1,11 @@
 import axios from "axios";
 import { SET_MOVIES, SET_SEARCH, SET_SINGLE_MOVIE, GET_GENRES } from "../types/movieType";
 
-const MOVIES_URL = "http://localhost:3001/movies";
-const usersUrl = "http://localhost:8080/users";
+// const MOVIES_URL = "http://localhost:3001/movies";
+const MOVIES_URL = "https://movies-express-deploy.herokuapp.com/movies";
+
+// const usersUrl = "http://localhost:8080/users";
+const usersUrl = "https://users-mongodb-deploy.herokuapp.com/users";
 
 export const setMovies = (payload) => {
     return { type: SET_MOVIES, payload };
@@ -38,7 +41,7 @@ export const getAllMovies = (genre) => {
     return (dispatch) => {
         axios({
             method: "get",
-            url: "http://localhost:3001/movies",
+            url: MOVIES_URL,
         })
             .then(({ data }) => {
                 let filtered = data.rows.filter((mov) => {
