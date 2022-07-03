@@ -1,6 +1,7 @@
 const axios = require("axios");
 const { gql } = require("apollo-server");
-const USERS_URL = "http://localhost:8080/users";
+// const USERS_URL = "http://localhost:8080/users";
+const USERS_URL = "https://users-mongodb-deploy.herokuapp.com/users";
 
 const typeDefs = gql`
     type isRegister {

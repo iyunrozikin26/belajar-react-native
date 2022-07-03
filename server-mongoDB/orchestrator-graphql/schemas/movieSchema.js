@@ -1,7 +1,7 @@
 const { gql } = require("apollo-server");
 const axios = require("axios");
 const MOVIES_URL = "http://localhost:3001/movies";
-const USERS_URL = "http://localhost:8080/users";
+const USERS_URL = "https://users-mongodb-deploy.herokuapp.com/users";
 
 const Redis = require("ioredis");
 

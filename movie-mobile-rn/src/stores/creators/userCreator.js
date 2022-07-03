@@ -1,7 +1,8 @@
 import axios from "axios";
 import { SET_USERS } from "../types/userType";
 
-const usersUrl = "http://localhost:8080/users";
+// const usersUrl = "http://localhost:8080/users";
+const usersUrl = "https://users-mongodb-deploy.herokuapp.com/users";
 
 export const setUsers = (payload) => {
     return { type: SET_USERS, payload };
